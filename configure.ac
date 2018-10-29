@@ -16,6 +16,7 @@ AX_CXX_COMPILE_STDCXX_14
 AC_PROG_INSTALL
 
 # Checks for libraries.
+AC_CHECK_LIB([ncurses], [lib-ncurses])
 
 # Checks for header files.
 
