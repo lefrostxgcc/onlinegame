@@ -1,27 +1,26 @@
 #include <ncurses.h>
 #include "view.h"
+#include "game.h"
 
 namespace
 {
 	void start()
 	{
-		int row{5}, col{7}, key;
 		OnlineGame::View view;
+		OnlineGame::Game game{view};
 
-		view.welcome();
+		game.start();
 
 		while (true)
 		{
-			view.show(row, col, 'O');
 			refresh();
-			key = getch();
-			view.show(row, col, ' ');
+			int key = getch();
 			switch (key)
 			{
-				case KEY_DOWN	: row++; break;
-				case KEY_UP	: row--; break;
-				case KEY_LEFT	: col--; break;
-				case KEY_RIGHT	: col++; break;
+				case KEY_DOWN	: game.move(1, 0);	break;
+				case KEY_UP	: game.move(-1, 0);	break;
+				case KEY_LEFT	: game.move(0, -1);	break;
+				case KEY_RIGHT	: game.move(0, 1);	break;
 				case 'q'	: return;
 			}
 		}
