@@ -1,0 +1,15 @@
+autom4te.cache/*
+build/*
+build-aux/*
+aclocal.m4
+config.h.in
+config.h
+configure
+configure.scan
+autoscan.log
+Makefile
+Makefile.in
+src/Makefile.in
+src/Makefile
+*~
+src/*~
