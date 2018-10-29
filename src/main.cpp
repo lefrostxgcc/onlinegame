@@ -1,8 +1,16 @@
 #include <iostream>
 
+namespace
+{
+	void start()
+	{
+		std::cout << "Welcome to the Online Game!\n";
+	}
+}
+
 int main()
 {
-	std::cout << "Hello World!\n";
+	start();
 
 	return 0;
 }
