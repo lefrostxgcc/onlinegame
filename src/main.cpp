@@ -1,19 +1,21 @@
 #include <ncurses.h>
+#include "view.h"
 
 namespace
 {
 	void start()
 	{
 		int row{5}, col{7}, key;
+		OnlineGame::View view;
 
-		printw("Welcome to the Online Game!\n");
+		view.welcome();
 
 		while (true)
 		{
-			mvaddch(row, col, 'O');
+			view.show(row, col, 'O');
 			refresh();
 			key = getch();
-			mvaddch(row, col, ' ');
+			view.show(row, col, ' ');
 			switch (key)
 			{
 				case KEY_DOWN	: row++; break;
