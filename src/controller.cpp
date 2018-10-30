@@ -4,7 +4,15 @@
 OnlineGame::Controller::Controller(const Game &g)
 	: game{g}
 {
+	initscr();
+	keypad(stdscr, true);
+	noecho();
 	game.start();
+}
+
+OnlineGame::Controller::~Controller()
+{
+	endwin();
 }
 
 void OnlineGame::Controller::run()
