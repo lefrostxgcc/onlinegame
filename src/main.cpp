@@ -6,7 +6,7 @@ int main()
 {
 	OnlineGame::View view;
 	OnlineGame::Game game{view};
-	OnlineGame::Controller controller{game};
+	OnlineGame::Controller controller{std::move(game)};
 
 	controller.run();
 

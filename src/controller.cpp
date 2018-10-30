@@ -1,8 +1,8 @@
 #include "controller.h"
 #include <ncurses.h>
 
-OnlineGame::Controller::Controller(const Game &g)
-	: game{g}
+OnlineGame::Controller::Controller(Game g)
+	: game{std::move(g)}
 {
 	initscr();
 	keypad(stdscr, true);
@@ -19,7 +19,7 @@ void OnlineGame::Controller::run()
 {
 	while (true)
 	{
-		refresh();
+		view.refresh();
 		int key = getch();
 		switch (key)
 		{

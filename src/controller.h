@@ -7,7 +7,7 @@ namespace OnlineGame
 	class Controller
 	{
 	public:
-		explicit Controller(const Game &game);
+		explicit Controller(Game game);
 		~Controller();
 		void run();
 	private:

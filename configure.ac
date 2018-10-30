@@ -17,6 +17,7 @@ AC_PROG_INSTALL
 
 # Checks for libraries.
 AC_CHECK_LIB([ncurses], [lib-ncurses])
+AC_CHECK_LIB([pthread], [lib-pthread])
 
 # Checks for header files.
 

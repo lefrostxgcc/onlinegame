@@ -10,3 +10,8 @@ void OnlineGame::View::show(int row, int col, int symbol)
 {
 	mvaddch(row, col, symbol);
 }
+
+void OnlineGame::View::refresh()
+{
+	::refresh();
+}
