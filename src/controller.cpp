@@ -4,15 +4,16 @@
 OnlineGame::Controller::Controller(Game g)
 	: game{std::move(g)}
 {
-	initscr();
-	keypad(stdscr, true);
-	noecho();
+	::initscr();
+	::clear();
+	::keypad(stdscr, true);
+	::noecho();
 	game.start();
 }
 
 OnlineGame::Controller::~Controller()
 {
-	endwin();
+	::endwin();
 }
 
 void OnlineGame::Controller::run()

@@ -3,7 +3,8 @@
 
 void OnlineGame::View::welcome()
 {
-	printw("Welcome to the Online Game!\n");
+	::erase();
+	::printw("Welcome to the Online Game!\n");
 }
 
 void OnlineGame::View::show(int row, int col, int symbol)
