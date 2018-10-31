@@ -3,21 +3,21 @@
 #include <thread>
 #include <memory>
 #include <mutex>
-#include "view_basic.h"
+#include "view_color.h"
 
 namespace OnlineGame
 {
 	class Game
 	{
 	public:
-		explicit Game(ViewBasic view);
+		explicit Game(ViewColor view);
 		void start();
 		void move(int srow, int scol);
 	private:
 		void run();
 		std::thread mv_thread;
 		std::unique_ptr<std::mutex> srow_scol_mutex;
-		ViewBasic view;
+		ViewColor view;
 		int row{5};
 		int col{10};
 		int srow{};
