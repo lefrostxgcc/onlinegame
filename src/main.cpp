@@ -1,4 +1,4 @@
-#include "view.h"
+#include "view_basic.h"
 #include "game.h"
 #include "controller.h"
 

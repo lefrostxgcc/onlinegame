@@ -1,6 +1,6 @@
 #ifndef ONLINEGAME_CONTROLLER
 #define ONLINEGAME_CONTROLLER
-#include "view.h"
+#include "view_basic.h"
 #include "game.h"
 namespace OnlineGame
 {

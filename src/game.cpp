@@ -1,6 +1,5 @@
 #include <chrono>
 #include "game.h"
-#include "view.h"
 
 OnlineGame::Game::Game(View v)
  :	view{std::move(v)},

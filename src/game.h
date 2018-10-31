@@ -3,7 +3,7 @@
 #include <thread>
 #include <memory>
 #include <mutex>
-#include "view.h"
+#include "view_basic.h"
 
 namespace OnlineGame
 {

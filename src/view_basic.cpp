@@ -1,5 +1,5 @@
-#include "view.h"
 #include <ncurses.h>
+#include "view_basic.h"
 
 void OnlineGame::View::welcome()
 {
