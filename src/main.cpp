@@ -4,7 +4,7 @@
 
 int main()
 {
-	OnlineGame::View view;
+	OnlineGame::ViewBasic view;
 	OnlineGame::Game game{std::move(view)};
 	OnlineGame::Controller controller{std::move(game)};
 

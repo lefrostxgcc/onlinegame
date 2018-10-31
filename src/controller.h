@@ -12,7 +12,7 @@ namespace OnlineGame
 		void run();
 	private:
 		Game game;
-		View view;
+		ViewBasic view;
 	};
 }
 #endif /* ONLINEGAME_CONTROLLER */

@@ -1,8 +1,8 @@
-#ifndef ONLINEGAME_VIEW
-#define ONLINEGAME_VIEW
+#ifndef ONLINEGAME_VIEW_BASIC_H
+#define ONLINEGAME_VIEW_BASIC_H
 namespace OnlineGame
 {
-	class View
+	class ViewBasic
 	{
 	public:
 		void welcome();
@@ -10,4 +10,4 @@ namespace OnlineGame
 		void refresh();
 	};
 }
-#endif /* ONLINEGAME_VIEW */
+#endif /* ONLINEGAME_VIEW_BASIC_H */

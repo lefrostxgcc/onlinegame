@@ -1,7 +1,7 @@
 #include <chrono>
 #include "game.h"
 
-OnlineGame::Game::Game(View v)
+OnlineGame::Game::Game(ViewBasic v)
  :	view{std::move(v)},
 	srow_scol_mutex(new std::mutex{})
 {

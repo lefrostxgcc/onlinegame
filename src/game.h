@@ -10,14 +10,14 @@ namespace OnlineGame
 	class Game
 	{
 	public:
-		explicit Game(View view);
+		explicit Game(ViewBasic view);
 		void start();
 		void move(int srow, int scol);
 	private:
 		void run();
 		std::thread mv_thread;
 		std::unique_ptr<std::mutex> srow_scol_mutex;
-		View view;
+		ViewBasic view;
 		int row{5};
 		int col{10};
 		int srow{};

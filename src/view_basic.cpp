@@ -1,18 +1,18 @@
 #include <ncurses.h>
 #include "view_basic.h"
 
-void OnlineGame::View::welcome()
+void OnlineGame::ViewBasic::welcome()
 {
 	::erase();
 	::printw("Welcome to the Online Game!\n");
 }
 
-void OnlineGame::View::show(int row, int col, int symbol)
+void OnlineGame::ViewBasic::show(int row, int col, int symbol)
 {
 	mvaddch(row, col, symbol);
 }
 
-void OnlineGame::View::refresh()
+void OnlineGame::ViewBasic::refresh()
 {
 	::refresh();
 }
