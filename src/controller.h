@@ -1,18 +1,15 @@
-#ifndef ONLINEGAME_CONTROLLER
-#define ONLINEGAME_CONTROLLER
-#include "view_basic.h"
+#ifndef ONLINEGAME_CONTROLLER_H
+#define ONLINEGAME_CONTROLLER_H
 #include "game.h"
 namespace OnlineGame
 {
 	class Controller
 	{
 	public:
-		explicit Controller(Game game);
-		~Controller();
+		explicit Controller(const Game &game);
 		void run();
 	private:
 		Game game;
-		ViewColor view;
 	};
 }
-#endif /* ONLINEGAME_CONTROLLER */
+#endif /* ONLINEGAME_CONTROLLER_H */

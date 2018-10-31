@@ -6,7 +6,6 @@ namespace OnlineGame
 	{
 	public:
 		ViewColor();
-		~ViewColor();
 		void welcome();
 		void show(int row, int col, int symbol);
 		void refresh();

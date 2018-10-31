@@ -1,23 +1,21 @@
-#include "controller.h"
+#include <utility>
 #include <ncurses.h>
+#include "controller.h"
 
-OnlineGame::Controller::Controller(Game g)
-	: game{std::move(g)}
+OnlineGame::Controller::Controller(const Game &g)
+	: game{g}
 {
 	game.start();
 }
 
-OnlineGame::Controller::~Controller()
-{
-
-}
-
 void OnlineGame::Controller::run()
 {
+	int key = ERR, newkey = ERR;
+
 	while (true)
 	{
-		view.refresh();
-		int key = getch();
+		if ((newkey = getch()) != ERR)
+			key = newkey;
 		switch (key)
 		{
 			case KEY_DOWN	: game.move(1, 0);	break;

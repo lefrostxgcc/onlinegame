@@ -3,12 +3,9 @@
 
 OnlineGame::ViewColor::ViewColor()
 {
-
-}
-
-OnlineGame::ViewColor::~ViewColor()
-{
-	//attroff(COLOR_PAIR(1));
+	init_pair(1, COLOR_WHITE, COLOR_BLUE);
+	attron(COLOR_PAIR(1));
+	bkgd(COLOR_PAIR(1));
 }
 
 void OnlineGame::ViewColor::welcome()
