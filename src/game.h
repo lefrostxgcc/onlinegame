@@ -1,17 +1,18 @@
 #ifndef ONLINEGAME_GAME_H
 #define ONLINEGAME_GAME_H
-#include "view_color.h"
+#include <memory>
+#include "iview.h"
 
 namespace OnlineGame
 {
 	class Game
 	{
 	public:
-		explicit Game(const ViewColor &view);
+		explicit Game(std::unique_ptr<IView> view);
 		void start();
 		void move(int srow, int scol);
 	private:
-		ViewColor view;
+		std::unique_ptr<IView> view;
 		int row{5};
 		int col{10};
 	};

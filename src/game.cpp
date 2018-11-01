@@ -1,21 +1,22 @@
 #include "game.h"
 
-OnlineGame::Game::Game(const ViewColor &v)
- :	view{v}
+OnlineGame::Game::Game(std::unique_ptr<IView> v)
+ :	view{std::move(v)}
 {
 }
 
 void OnlineGame::Game::start()
 {
-	view.welcome();
+	view->clear();
+	view->welcome();
 	move(0, 0);
 }
 
 void OnlineGame::Game::move(int srow, int scol)
 {
-	view.show(row, col, ' ');
+	view->show(row, col, ' ');
 	row += srow;
 	col += scol;
-	view.show(row, col, 'O');
-	view.refresh();
+	view->show(row, col, 'O');
+	view->refresh();
 }
