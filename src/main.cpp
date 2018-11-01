@@ -16,7 +16,6 @@ int main()
 	noecho();
 	keypad(stdscr, TRUE);
 	curs_set(0);
-	timeout(100);
 
 	std::unique_ptr<IView> view = std::make_unique<ViewColor>();
 	std::unique_ptr<Game> game = std::make_unique<Game>(std::move(view));

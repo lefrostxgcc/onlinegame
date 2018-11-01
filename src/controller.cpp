@@ -9,13 +9,9 @@ OnlineGame::Controller::Controller(std::unique_ptr<Game> g)
 
 void OnlineGame::Controller::run()
 {
-	int key = ERR, newkey = ERR;
-
 	while (true)
 	{
-		if ((newkey = getch()) != ERR)
-			key = newkey;
-		switch (key)
+		switch (getch())
 		{
 			case KEY_DOWN	: game->move(1, 0);	break;
 			case KEY_UP	: game->move(-1, 0);	break;
