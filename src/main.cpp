@@ -3,6 +3,7 @@
 #include <utility>
 #include "view_basic.h"
 #include "view_color.h"
+#include "view_alter.h"
 #include "game.h"
 #include "controller.h"
 
