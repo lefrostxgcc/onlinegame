@@ -1,6 +1,6 @@
 #ifndef ONLINEGAME_VIEW_BASIC_H
 #define ONLINEGAME_VIEW_BASIC_H
-#include "iview.h"
+#include <iview.h>
 namespace OnlineGame
 {
 	class ViewBasic : public IView {

@@ -1,7 +1,7 @@
 #ifndef ONLINEGAME_CONTROLLER_H
 #define ONLINEGAME_CONTROLLER_H
 #include <memory>
-#include "game.h"
+#include <game.h>
 namespace OnlineGame
 {
 	class Controller

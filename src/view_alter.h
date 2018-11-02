@@ -1,6 +1,6 @@
 #ifndef ONLINEGAME_VIEW_ALTER_H
 #define ONLINEGAME_VIEW_ALTER_H
-#include "iview.h"
+#include <iview.h>
 namespace OnlineGame
 {
 	class ViewAlter : public IView {
