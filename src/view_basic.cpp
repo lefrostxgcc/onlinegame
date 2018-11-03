@@ -6,9 +6,9 @@ void OnlineGame::ViewBasic::welcome()
 	printw("Welcome to the Online Game!\n");
 }
 
-void OnlineGame::ViewBasic::show(int row, int col, int symbol)
+void OnlineGame::ViewBasic::show(int row, int col, Subject s)
 {
-	mvaddch(row, col, symbol);
+	mvaddch(row, col, (int)s);
 }
 
 void OnlineGame::ViewBasic::clear()

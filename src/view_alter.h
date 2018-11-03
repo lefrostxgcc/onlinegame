@@ -7,7 +7,7 @@ namespace OnlineGame
 	public:
 		explicit ViewAlter();
 		void welcome() override;
-		void show(int row, int col, int symbol) override;
+		void show(int row, int col, Subject s) override;
 		void clear() override;
 		void refresh() override;
 	};

@@ -14,9 +14,9 @@ void OnlineGame::Game::start()
 
 void OnlineGame::Game::move(int srow, int scol)
 {
-	view->show(row, col, ' ');
+	view->show(row, col, Subject::space);
 	row += srow;
 	col += scol;
-	view->show(row, col, 'O');
+	view->show(row, col, Subject::user1);
 	view->refresh();
 }

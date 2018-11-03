@@ -13,9 +13,9 @@ void OnlineGame::ViewAlter::welcome()
 	printw("Welcome to the Online Alter Game!\n");
 }
 
-void OnlineGame::ViewAlter::show(int row, int col, int symbol)
+void OnlineGame::ViewAlter::show(int row, int col, Subject s)
 {
-	mvaddch(row, col, symbol);
+	mvaddch(row, col, (int)s);
 }
 
 void OnlineGame::ViewAlter::clear()
