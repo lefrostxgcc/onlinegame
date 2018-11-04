@@ -15,7 +15,7 @@ void OnlineGame::ViewColor::welcome()
 
 void OnlineGame::ViewColor::show(int row, int col, Subject s)
 {
-	mvaddch(row, col, (int)s);
+	mvaddch(row, col, static_cast<int>(s));
 }
 
 void OnlineGame::ViewColor::clear()

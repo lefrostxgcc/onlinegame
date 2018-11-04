@@ -15,7 +15,7 @@ void OnlineGame::ViewAlter::welcome()
 
 void OnlineGame::ViewAlter::show(int row, int col, Subject s)
 {
-	mvaddch(row, col, (int)s);
+	mvaddch(row, col, static_cast<int>(s));
 }
 
 void OnlineGame::ViewAlter::clear()

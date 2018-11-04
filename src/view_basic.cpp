@@ -8,7 +8,7 @@ void OnlineGame::ViewBasic::welcome()
 
 void OnlineGame::ViewBasic::show(int row, int col, Subject s)
 {
-	mvaddch(row, col, (int)s);
+	mvaddch(row, col, static_cast<int>(s));
 }
 
 void OnlineGame::ViewBasic::clear()
