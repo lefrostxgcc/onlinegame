@@ -14,9 +14,9 @@ void OnlineGame::Game::start()
 
 void OnlineGame::Game::move(int srow, int scol)
 {
-	view->show(row, col, Subject::space);
-	row += srow;
-	col += scol;
-	view->show(row, col, Subject::user1);
+	Coord move_coord{user1_coord.row + srow, user1_coord.col + scol};
+	view->show(user1_coord, Subject::space);
+	view->show(move_coord, Subject::user1);
+	user1_coord = move_coord;
 	view->refresh();
 }

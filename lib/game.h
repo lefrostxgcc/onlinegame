@@ -13,8 +13,7 @@ namespace OnlineGame
 		void move(int srow, int scol);
 	private:
 		std::unique_ptr<IView> view;
-		int row{5};
-		int col{10};
+		Coord user1_coord{5, 10};
 	};
 }
 #endif /* ONLINEGAME_GAME_H */

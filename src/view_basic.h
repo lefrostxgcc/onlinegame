@@ -6,7 +6,7 @@ namespace OnlineGame
 	class ViewBasic : public IView {
 	public:
 		void welcome() override;
-		void show(int row, int col, Subject s) override;
+		void show(Coord coord, Subject s) override;
 		void clear() override;
 		void refresh() override;
 	};

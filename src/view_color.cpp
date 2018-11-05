@@ -13,9 +13,9 @@ void OnlineGame::ViewColor::welcome()
 	printw("Welcome to the Online Game!\n");
 }
 
-void OnlineGame::ViewColor::show(int row, int col, Subject s)
+void OnlineGame::ViewColor::show(Coord coord, Subject s)
 {
-	mvaddch(row, col, static_cast<int>(s));
+	mvaddch(coord.row, coord.col, static_cast<int>(s));
 }
 
 void OnlineGame::ViewColor::clear()
