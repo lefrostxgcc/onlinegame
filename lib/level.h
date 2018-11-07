@@ -7,12 +7,15 @@ namespace OnlineGame
 {
 	class Level {
 	public:
+		Level() = default;
 		explicit Level(const Coord &coord);
+		void init();
 		const Subject& operator[](const Coord &coord) const;
 		Subject& operator[](const Coord &coord);
+		Coord get_size() const noexcept;
 	private:
-		Matrix<Subject> map;
-		Coord size;
+		Matrix<Subject> map{};
+		Coord size{};
 	};
 }
 #endif /* ONLINEGAME_LEVEL_H */

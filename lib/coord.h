@@ -3,9 +3,10 @@
 namespace OnlineGame
 {
 	struct Coord {
+		Coord() = default;
 		Coord(int row, int col);
-		int row;
-		int col;
+		int row{};
+		int col{};
 	};
 }
 #endif /* ONLINEGAME_COORD_H */

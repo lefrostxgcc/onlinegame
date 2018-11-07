@@ -10,11 +10,11 @@ namespace OnlineGame
 	{
 	public:
 		explicit Game(std::unique_ptr<IView> view);
-		void start(std::unique_ptr<Level> level);
+		void start(const Level &level);
 		void move(int srow, int scol);
 	private:
 		std::unique_ptr<IView> view;
-		std::unique_ptr<Level> level{};
+		Level level;
 		Coord user1_coord{5, 10};
 	};
 }
