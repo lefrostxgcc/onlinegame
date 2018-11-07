@@ -7,6 +7,9 @@ namespace OnlineGame
 {
 	class Level {
 	public:
+		using iterator = typename Matrix<Subject>::iterator;
+		iterator begin();
+		iterator end();
 		Level() = default;
 		explicit Level(const Coord &coord);
 		void init();

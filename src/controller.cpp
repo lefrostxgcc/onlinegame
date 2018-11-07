@@ -7,7 +7,7 @@ OnlineGame::Controller::Controller(std::unique_ptr<Game> g)
 
 void OnlineGame::Controller::run()
 {
-	Level level{Coord{20, 30}};
+	Level level{Coord{10, 40}};
 	game->start(level);
 
 	while (true)

@@ -38,3 +38,13 @@ OnlineGame::Coord OnlineGame::Level::get_size() const noexcept
 {
 	return size;
 }
+
+OnlineGame::Level::iterator OnlineGame::Level::begin()
+{
+	return map.begin();
+}
+
+OnlineGame::Level::iterator OnlineGame::Level::end()
+{
+	return map.end();
+}

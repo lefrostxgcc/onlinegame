@@ -1,11 +1,27 @@
 #ifndef ONLINEGAME_MATRIX_H
 #define ONLINEGAME_MATRIX_H
+#include <iterator>
 #include <algorithm>
+#include "coord.h"
+
 namespace OnlineGame
 {
 	template<typename T>
+	struct Element
+	{
+		T subject;
+		Coord coord;
+	};
+
+	template<typename T>
+	class matrix_iterator;
+
+	template<typename T>
 	class Matrix {
 	public:
+		using iterator = matrix_iterator<T>;
+		iterator begin();
+		iterator end();
 		Matrix() = default;
 		Matrix(int r, int c);
 		Matrix(const Matrix &m);
@@ -24,6 +40,87 @@ namespace OnlineGame
 		T *buf{};
 		int rows{}, cols{};
 	};
+
+	template<typename T>
+	class matrix_iterator:
+		public std::iterator<std::input_iterator_tag, T,
+			ptrdiff_t, const T*, const T&>
+	{
+		public:
+			matrix_iterator(T *buf, int rows, int cols, int pos);
+			Element<T> operator*() const;
+			matrix_iterator& operator++();
+			matrix_iterator operator++(int);
+			matrix_iterator& operator=(const T& val);
+			bool operator==(const matrix_iterator<T> &other) const;
+			bool operator!=(const matrix_iterator<T> &other) const;
+		private:
+			T *buf;
+			int rows;
+			int cols;
+			int pos;
+	};
+
+	template<typename T>
+	matrix_iterator<T>::matrix_iterator(T *m, int r, int c, int p)
+	:	buf{m},
+		rows{r},
+		cols{c},
+		pos{p}
+	{
+	}
+
+	template<typename T>
+	Element<T> matrix_iterator<T>::operator*() const
+	{
+		return Element<T>{buf[pos], Coord{ pos / cols, pos % cols}};
+	}
+
+	template<typename T>
+	matrix_iterator<T>& matrix_iterator<T>::operator++()
+	{
+		++pos;
+		return *this;
+	}
+
+	template<typename T>
+	matrix_iterator<T> matrix_iterator<T>::operator++(int)
+	{
+		matrix_iterator<T> temp = *this;
+		++pos;
+		return temp;
+	}
+
+	template<typename T>
+	matrix_iterator<T>& matrix_iterator<T>::operator=(const T& val)
+	{
+		buf[pos] = val;
+		return *this;
+	}
+
+	template<typename T>
+	bool matrix_iterator<T>::operator==(const matrix_iterator<T> &a) const
+	{
+		return buf == a.buf && rows == a.rows && cols == a.cols && pos == a.pos;
+	}
+
+	template<typename T>
+	bool matrix_iterator<T>::operator!=(const matrix_iterator<T> &other) const
+	{
+		return !(*this == other);
+	}
+
+	template<typename T>
+	typename Matrix<T>::iterator Matrix<T>::begin()
+	{
+		return matrix_iterator<T>(buf, rows, cols, 0);
+	}
+
+	template<typename T>
+	typename Matrix<T>::iterator Matrix<T>::end()
+	{
+		return matrix_iterator<T>(buf, rows, cols, rows * cols);
+	}
 
 	template<typename T>
 	Matrix<T>::Matrix(int r, int c)
