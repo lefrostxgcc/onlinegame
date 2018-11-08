@@ -13,8 +13,8 @@ namespace OnlineGame
 		Level() = default;
 		explicit Level(const Coord &coord);
 		void init();
-		const Subject& operator[](const Coord &coord) const;
-		Subject& operator[](const Coord &coord);
+		void set_subject(const Coord &coord, Subject subject);
+		Subject get_subject(const Coord &coord) const;
 		Coord get_size() const noexcept;
 	private:
 		Matrix<Subject> map{};

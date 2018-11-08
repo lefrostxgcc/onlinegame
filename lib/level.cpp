@@ -23,15 +23,17 @@ void OnlineGame::Level::init()
 	map(row_count/2, col_count/2) = Subject::user1;
 }
 
-const OnlineGame::Subject&
-OnlineGame::Level::operator[](const Coord &coord) const
+void OnlineGame::Level::set_subject(const Coord &coord, Subject subject)
 {
-	return map(coord.row, coord.col);
+	if (coord.in_size(size))
+		map(coord.row, coord.col) = subject;
 }
 
-OnlineGame::Subject& OnlineGame::Level::operator[](const Coord &coord)
+OnlineGame::Subject OnlineGame::Level::get_subject(const Coord &coord) const
 {
-	return map(coord.row, coord.col);
+	if (coord.in_size(size))
+		return map(coord.row, coord.col);
+	return Subject::nulls;
 }
 
 OnlineGame::Coord OnlineGame::Level::get_size() const noexcept

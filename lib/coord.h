@@ -5,6 +5,7 @@ namespace OnlineGame
 	struct Coord {
 		Coord() = default;
 		Coord(int row, int col);
+		bool in_size(const Coord &other) const;
 		int row{};
 		int col{};
 	};

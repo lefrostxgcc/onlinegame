@@ -22,8 +22,10 @@ void OnlineGame::Game::start(const Level &l)
 void OnlineGame::Game::move(int srow, int scol)
 {
 	Coord move_coord{user1_coord.row + srow, user1_coord.col + scol};
-	level[user1_coord] = Subject::space;
-	level[move_coord] = Subject::user1;
+	if (!move_coord.in_size(level.get_size()))
+		return;
+	level.set_subject(user1_coord, Subject::space);
+	level.set_subject(move_coord, Subject::user1);
 	view->show(user1_coord, Subject::space);
 	view->show(move_coord, Subject::user1);
 	user1_coord = move_coord;
