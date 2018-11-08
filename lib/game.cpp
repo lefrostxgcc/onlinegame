@@ -1,5 +1,5 @@
+#include <stdexcept>
 #include "game.h"
-#include <numeric>
 
 OnlineGame::Game::Game(std::unique_ptr<IView> v)
  :	view{std::move(v)}
@@ -15,7 +15,12 @@ void OnlineGame::Game::start(const Level &l)
 	for (auto x : level)
 		view->show(x.coord(), x.data());
 
-	user1_coord = level.find_first(Subject::user1)->coord();
+	auto p = level.find_first(Subject::user1);
+	if ( p != level.end())
+		user1_coord = p->coord();
+	else
+		throw std::logic_error{"User1 is not on the map"};
+
 	move(0, 0);
 }
 
