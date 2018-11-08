@@ -15,7 +15,7 @@ void OnlineGame::Game::start(const Level &l)
 	for (auto x : level)
 		view->show(x.coord(), x.data());
 
-	user1_coord = Coord{level.get_size().row / 2, level.get_size().col / 2};
+	user1_coord = level.find_first(Subject::user1)->coord();
 	move(0, 0);
 }
 

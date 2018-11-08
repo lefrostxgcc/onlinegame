@@ -1,4 +1,5 @@
 #include "level.h"
+#include <algorithm>
 
 OnlineGame::Level::Level(const Coord &coord)
  :	map{coord.row, coord.col},
@@ -34,6 +35,11 @@ OnlineGame::Subject OnlineGame::Level::get_subject(const Coord &coord) const
 	if (coord.in_size(size))
 		return map(coord.row, coord.col);
 	return Subject::nulls;
+}
+
+OnlineGame::Level::iterator OnlineGame::Level::find_first(Subject s)
+{
+	return std::find(map.begin(), map.end(), s);
 }
 
 OnlineGame::Coord OnlineGame::Level::get_size() const noexcept

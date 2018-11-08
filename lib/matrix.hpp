@@ -22,6 +22,8 @@ namespace OnlineGame
 		T& data(const T &a);
 		bool operator==(const Element<T> &a) const;
 		bool operator!=(const Element<T> &a) const;
+		bool operator==(const T &a) const;
+		bool operator!=(const T &a) const;
 		Element<T>& operator=(const T &val);
 		friend class matrix_iterator<T>;
 	private:
@@ -44,6 +46,18 @@ namespace OnlineGame
 
 	template<typename T>
 	bool Element<T>::operator!=(const Element<T> &a) const
+	{
+		return !(*this == a);
+	}
+
+	template<typename T>
+	bool Element<T>::operator==(const T &a) const
+	{
+		return (*m)[pos] == a;
+	}
+
+	template<typename T>
+	bool Element<T>::operator!=(const T &a) const
 	{
 		return !(*this == a);
 	}
@@ -110,6 +124,8 @@ namespace OnlineGame
 			matrix_iterator(Matrix<T> *m, int p);
 			const Element<T>& operator*() const;
 			Element<T>& operator*();
+			const Element<T>* operator->() const;
+			Element<T>* operator->();
 			matrix_iterator& operator++();
 			matrix_iterator operator++(int);
 			matrix_iterator& operator=(const T& val);
@@ -135,6 +151,18 @@ namespace OnlineGame
 	Element<T>& matrix_iterator<T>::operator*()
 	{
 		return elem;
+	}
+
+	template<typename T>
+	const Element<T>* matrix_iterator<T>::operator->() const
+	{
+		return &elem;
+	}
+
+	template<typename T>
+	Element<T>* matrix_iterator<T>::operator->()
+	{
+		return &elem;
 	}
 
 	template<typename T>

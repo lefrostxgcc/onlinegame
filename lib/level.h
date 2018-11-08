@@ -8,11 +8,12 @@ namespace OnlineGame
 	class Level {
 	public:
 		using iterator = typename Matrix<Subject>::iterator;
-		iterator begin();
-		iterator end();
 		Level() = default;
 		explicit Level(const Coord &coord);
 		void init();
+		iterator begin();
+		iterator end();
+		iterator find_first(Subject s);
 		void set_subject(const Coord &coord, Subject subject);
 		Subject get_subject(const Coord &coord) const;
 		Coord get_size() const noexcept;
