@@ -7,14 +7,48 @@
 namespace OnlineGame
 {
 	template<typename T>
-	struct Element
-	{
-		T subject;
-		Coord coord;
-	};
+	class Matrix;
 
 	template<typename T>
 	class matrix_iterator;
+
+	template<typename T>
+	struct Element
+	{
+		Element() = default;
+		bool operator==(const Element<T> &a) const;
+		bool operator!=(const Element<T> &a) const;
+		Element& operator=(const T& val);
+		T *subject{};
+		Coord coord{};
+	};
+
+	template<typename T>
+	Element<T> make_element(Matrix<T> *m, int pos)
+	{
+		return Element<T>{m->buf + pos,
+			Coord{pos / m->col_count(), pos % m->col_count()}};
+	}
+
+	template<typename T>
+	bool Element<T>::operator==(const Element<T> &a) const
+	{
+		return subject == a.subject && coord.row == a.coord.row &&
+			coord.col == a.coord.col;
+	}
+
+	template<typename T>
+	bool Element<T>::operator!=(const Element<T> &a) const
+	{
+		return !(*this == a);
+	}
+
+	template<typename T>
+	Element<T>& Element<T>::operator=(const T &val)
+	{
+		*subject = val;
+		return *this;
+	}
 
 	template<typename T>
 	class Matrix {
@@ -31,11 +65,15 @@ namespace OnlineGame
 		Matrix& operator=(Matrix &&m) noexcept;
 		const T& operator()(int row, int col) const;
 		T& operator()(int row, int col);
+		const T& operator[](int pos) const;
+		T& operator[](int pos);
 		void set(int row, int col, const T &t);
 		const T& get(int row, int col) const;
 		void resize(int rows, int cols);
 		int row_count() const noexcept;
 		int col_count() const noexcept;
+		friend class matrix_iterator<T>;
+		friend Element<T> make_element<T>(Matrix<T> *m, int pos);
 	private:
 		T *buf{};
 		int rows{}, cols{};
@@ -43,43 +81,49 @@ namespace OnlineGame
 
 	template<typename T>
 	class matrix_iterator:
-		public std::iterator<std::input_iterator_tag, T,
+		public std::iterator<std::forward_iterator_tag, T,
 			ptrdiff_t, const T*, const T&>
 	{
 		public:
-			matrix_iterator(T *buf, int rows, int cols, int pos);
-			Element<T> operator*() const;
+			matrix_iterator(Matrix<T> *m, int p);
+			const Element<T>& operator*() const;
+			Element<T>& operator*();
 			matrix_iterator& operator++();
 			matrix_iterator operator++(int);
 			matrix_iterator& operator=(const T& val);
 			bool operator==(const matrix_iterator<T> &other) const;
 			bool operator!=(const matrix_iterator<T> &other) const;
 		private:
-			T *buf;
-			int rows;
-			int cols;
-			int pos;
+			Matrix<T> *m;
+			Element<T> elem;
+			int pos{};
 	};
 
 	template<typename T>
-	matrix_iterator<T>::matrix_iterator(T *m, int r, int c, int p)
-	:	buf{m},
-		rows{r},
-		cols{c},
+	matrix_iterator<T>::matrix_iterator(Matrix<T> *mm, int p)
+	:	m{mm},
+		elem{make_element<T>(mm, p)},
 		pos{p}
 	{
 	}
 
 	template<typename T>
-	Element<T> matrix_iterator<T>::operator*() const
+	const Element<T>& matrix_iterator<T>::operator*() const
 	{
-		return Element<T>{buf[pos], Coord{ pos / cols, pos % cols}};
+		return elem;
+	}
+
+	template<typename T>
+	Element<T>& matrix_iterator<T>::operator*()
+	{
+		return elem;
 	}
 
 	template<typename T>
 	matrix_iterator<T>& matrix_iterator<T>::operator++()
 	{
 		++pos;
+		elem = make_element(m, pos);
 		return *this;
 	}
 
@@ -88,20 +132,21 @@ namespace OnlineGame
 	{
 		matrix_iterator<T> temp = *this;
 		++pos;
+		elem = make_element(m, pos);
 		return temp;
 	}
 
 	template<typename T>
 	matrix_iterator<T>& matrix_iterator<T>::operator=(const T& val)
 	{
-		buf[pos] = val;
+		elem.subject[pos] = val;
 		return *this;
 	}
 
 	template<typename T>
 	bool matrix_iterator<T>::operator==(const matrix_iterator<T> &a) const
 	{
-		return buf == a.buf && rows == a.rows && cols == a.cols && pos == a.pos;
+		return m == a.m && elem == a.elem && pos == a.pos;
 	}
 
 	template<typename T>
@@ -113,13 +158,13 @@ namespace OnlineGame
 	template<typename T>
 	typename Matrix<T>::iterator Matrix<T>::begin()
 	{
-		return matrix_iterator<T>(buf, rows, cols, 0);
+		return matrix_iterator<T>(this, 0);
 	}
 
 	template<typename T>
 	typename Matrix<T>::iterator Matrix<T>::end()
 	{
-		return matrix_iterator<T>(buf, rows, cols, rows * cols);
+		return matrix_iterator<T>(this, rows * cols);
 	}
 
 	template<typename T>
@@ -193,6 +238,18 @@ namespace OnlineGame
 	T& Matrix<T>::operator()(int row, int col)
 	{
 		return buf[row * cols + col];
+	}
+
+	template<typename T>
+	const T& Matrix<T>::operator[](int pos) const
+	{
+		return buf[pos];
+	}
+
+	template<typename T>
+	T& Matrix<T>::operator[](int pos)
+	{
+		return buf[pos];
 	}
 
 	template<typename T>

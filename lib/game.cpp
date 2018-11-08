@@ -1,4 +1,6 @@
 #include "game.h"
+#include <numeric>
+#include <iostream>
 
 OnlineGame::Game::Game(std::unique_ptr<IView> v)
  :	view{std::move(v)}
@@ -12,7 +14,7 @@ void OnlineGame::Game::start(const Level &l)
 	view->welcome();
 
 	for (auto x : level)
-		view->show(x.coord, x.subject);
+		view->show(x.coord, *x.subject);
 
 	user1_coord = Coord{level.get_size().row / 2, level.get_size().col / 2};
 	move(0, 0);
