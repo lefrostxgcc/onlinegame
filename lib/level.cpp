@@ -75,3 +75,14 @@ OnlineGame::Level::iterator OnlineGame::Level::end()
 {
 	return map.end();
 }
+
+void OnlineGame::Level::eat_money(Coord money_coord)
+{
+	if (get_subject(money_coord) == Subject::money)
+		money_count++;
+}
+
+int OnlineGame::Level::get_money_count() const noexcept
+{
+	return money_count;
+}

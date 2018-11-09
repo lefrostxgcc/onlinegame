@@ -18,9 +18,12 @@ namespace OnlineGame
 		void set_subject(const Coord &coord, Subject subject);
 		Subject get_subject(const Coord &coord) const;
 		Coord get_size() const noexcept;
+		void eat_money(Coord money_coord);
+		int get_money_count() const noexcept;
 	private:
 		Matrix<Subject> map{};
 		Coord size{};
+		int money_count{};
 	};
 }
 #endif /* ONLINEGAME_LEVEL_H */

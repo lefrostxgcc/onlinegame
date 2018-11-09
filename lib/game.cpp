@@ -37,6 +37,8 @@ void OnlineGame::Game::move(int srow, int scol)
 	}
 	else if (s == Subject::space)
 		move_user(move_coord);
+
+	show_money_count();
 }
 
 void OnlineGame::Game::move_user(Coord move_coord)
@@ -54,10 +56,17 @@ void OnlineGame::Game::eat_money(Coord money_coord)
 	auto p = level.find_random(Subject::space);
 	if (p != level.end())
 	{
+		level.eat_money(money_coord);
 		level.set_subject(money_coord, Subject::space);
 		level.set_subject(p->coord(), Subject::money);
 		view->show(money_coord, Subject::space);
 		view->show(p->coord(), Subject::money);
+		show_money_count();
 	}
 }
-	
+
+void OnlineGame::Game::show_money_count()
+{
+	view->show_money_count(Coord{0, level.get_size().col + 1},
+		level.get_money_count());
+}

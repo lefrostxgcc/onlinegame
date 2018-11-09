@@ -9,6 +9,7 @@ namespace OnlineGame
 		virtual ~IView(){}
 		virtual void welcome() = 0;
 		virtual void show(Coord coord, Subject s) = 0;
+		virtual void show_money_count(Coord coord, int money_count) = 0;
 		virtual void clear() = 0;
 		virtual void refresh() = 0;
 	};

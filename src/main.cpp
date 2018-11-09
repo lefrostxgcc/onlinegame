@@ -4,7 +4,6 @@
 #include <game.h>
 #include "view_basic.h"
 #include "view_color.h"
-#include "view_alter.h"
 #include "controller.h"
 
 int main()

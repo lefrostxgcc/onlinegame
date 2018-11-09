@@ -7,6 +7,7 @@ namespace OnlineGame
 	public:
 		void welcome() override;
 		void show(Coord coord, Subject s) override;
+		void show_money_count(Coord coord, int money_count) override;
 		void clear() override;
 		void refresh() override;
 	};

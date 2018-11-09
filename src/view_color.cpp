@@ -27,6 +27,12 @@ void OnlineGame::ViewColor::show(Coord coord, Subject s)
 	mvaddch(coord.row, coord.col, static_cast<int>(s));
 }
 
+void OnlineGame::ViewColor::show_money_count(Coord coord, int money_count)
+{
+	attron(COLOR_PAIR(3));
+	mvprintw(coord.row, coord.col, "Money: %d$", money_count);
+}
+
 void OnlineGame::ViewColor::clear()
 {
 	erase();
