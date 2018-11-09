@@ -117,7 +117,7 @@ namespace OnlineGame
 
 	template<typename T>
 	class matrix_iterator:
-		public std::iterator<std::forward_iterator_tag, T,
+		public std::iterator<std::random_access_iterator_tag, T,
 			ptrdiff_t, const T*, const T&>
 	{
 		public:
@@ -128,9 +128,14 @@ namespace OnlineGame
 			Element<T>* operator->();
 			matrix_iterator& operator++();
 			matrix_iterator operator++(int);
+			matrix_iterator& operator--();
+			matrix_iterator operator--(int);
 			matrix_iterator& operator=(const T& val);
 			bool operator==(const matrix_iterator<T> &other) const;
 			bool operator!=(const matrix_iterator<T> &other) const;
+			matrix_iterator operator+(ptrdiff_t pos);
+			matrix_iterator operator-(ptrdiff_t pos);
+			ptrdiff_t operator-(const matrix_iterator<T> &other);
 		private:
 			Element<T> elem;
 	};
@@ -181,6 +186,21 @@ namespace OnlineGame
 	}
 
 	template<typename T>
+	matrix_iterator<T>& matrix_iterator<T>::operator--()
+	{
+		elem.pos--;
+		return *this;
+	}
+
+	template<typename T>
+	matrix_iterator<T> matrix_iterator<T>::operator--(int)
+	{
+		matrix_iterator<T> temp = *this;
+		elem.pos--;
+		return temp;
+	}
+
+	template<typename T>
 	matrix_iterator<T>& matrix_iterator<T>::operator=(const T& val)
 	{
 		elem.data = val;
@@ -197,6 +217,28 @@ namespace OnlineGame
 	bool matrix_iterator<T>::operator!=(const matrix_iterator<T> &other) const
 	{
 		return !(*this == other);
+	}
+
+	template<typename T>
+	matrix_iterator<T> matrix_iterator<T>::operator+(ptrdiff_t pos)
+	{
+		auto temp = *this;
+		temp.elem.pos += pos;
+		return temp;
+	}
+
+	template<typename T>
+	matrix_iterator<T> matrix_iterator<T>::operator-(ptrdiff_t pos)
+	{
+		auto temp = *this;
+		temp.elem.pos -= pos;
+		return temp;
+	}
+
+	template<typename T>
+	ptrdiff_t matrix_iterator<T>::operator-(const matrix_iterator<T> &a)
+	{
+		return elem.pos - a.elem.pos;
 	}
 
 	template<typename T>

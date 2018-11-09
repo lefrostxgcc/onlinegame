@@ -14,6 +14,7 @@ namespace OnlineGame
 		iterator begin();
 		iterator end();
 		iterator find_first(Subject s);
+		iterator find_random(Subject s);
 		void set_subject(const Coord &coord, Subject subject);
 		Subject get_subject(const Coord &coord) const;
 		Coord get_size() const noexcept;

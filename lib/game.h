@@ -13,6 +13,8 @@ namespace OnlineGame
 		void start(const Level &level);
 		void move(int srow, int scol);
 	private:
+		void move_user(Coord move_coord);
+		void eat_money(Coord money_coord);
 		std::unique_ptr<IView> view;
 		Level level;
 		Coord user1_coord{5, 10};

@@ -30,17 +30,34 @@ void OnlineGame::Game::move(int srow, int scol)
 	if (!move_coord.in_size(level.get_size()))
 		return;
 	Subject s = level.get_subject(move_coord);
-	if (s == Subject::nulls)
-		return;
-	else if (s == Subject::block)
-		return;
-	else if (s == Subject::space)
+	if (s == Subject::money)
 	{
-		level.set_subject(user1_coord, Subject::space);
-		level.set_subject(move_coord, Subject::user1);
-		view->show(user1_coord, Subject::space);
-		view->show(move_coord, Subject::user1);
-		user1_coord = move_coord;
-		view->refresh();
+		eat_money(move_coord);
+		move_user(move_coord);
+	}
+	else if (s == Subject::space)
+		move_user(move_coord);
+}
+
+void OnlineGame::Game::move_user(Coord move_coord)
+{
+	level.set_subject(user1_coord, Subject::space);
+	level.set_subject(move_coord, Subject::user1);
+	view->show(user1_coord, Subject::space);
+	view->show(move_coord, Subject::user1);
+	user1_coord = move_coord;
+	view->refresh();
+}
+
+void OnlineGame::Game::eat_money(Coord money_coord)
+{
+	auto p = level.find_random(Subject::space);
+	if (p != level.end())
+	{
+		level.set_subject(money_coord, Subject::space);
+		level.set_subject(p->coord(), Subject::money);
+		view->show(money_coord, Subject::space);
+		view->show(p->coord(), Subject::money);
 	}
 }
+	

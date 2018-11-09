@@ -1,4 +1,6 @@
 #include <algorithm>
+#include <vector>
+#include <random>
 #include "level.h"
 
 OnlineGame::Level::Level(const Coord &coord)
@@ -16,7 +18,8 @@ void OnlineGame::Level::init()
 		else
 			map(x.coord().row, x.coord().col) = Subject::space;
 
-	map(map.row_count()/2, map.col_count()/2) = Subject::user1;
+	map(map.row_count()/2, map.col_count()/3) = Subject::user1;
+	map(map.row_count()/2, map.col_count()*2/3) = Subject::money;
 }
 
 void OnlineGame::Level::set_subject(const Coord &coord, Subject subject)
@@ -35,6 +38,27 @@ OnlineGame::Subject OnlineGame::Level::get_subject(const Coord &coord) const
 OnlineGame::Level::iterator OnlineGame::Level::find_first(Subject s)
 {
 	return std::find(map.begin(), map.end(), s);
+}
+
+OnlineGame::Level::iterator OnlineGame::Level::find_random(Subject s)
+{
+	std::vector<iterator> v;
+
+	for (auto p = begin(); p != end(); p++)
+		if (p->data() == s)
+			v.push_back(p);
+
+	using index_type = std::vector<iterator>::size_type;
+
+	std::uniform_int_distribution<index_type> dist{0, v.size()};
+	std::random_device dev;
+
+	auto it_v = v[dist(dev)];
+	for (auto p = begin(); p != end(); p++)
+		if (p == it_v)
+			return p;
+	
+	return end();
 }
 
 OnlineGame::Coord OnlineGame::Level::get_size() const noexcept
