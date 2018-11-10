@@ -13,6 +13,9 @@ bool OnlineGame::Coord::in_size(Coord a) const
 
 bool OnlineGame::Coord::on_side(Coord a) const
 {
+	if (!in_size(a))
+		return false;
+
 	return row == 0 || row == a.row-1 || col == 0 || col == a.col - 1;
 }
 
