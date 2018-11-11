@@ -5,6 +5,8 @@
 #include "matrix.hpp"
 namespace OnlineGame
 {
+	class LevelTest;
+
 	class Level {
 	public:
 		using iterator = typename Matrix<Subject>::iterator;

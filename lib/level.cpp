@@ -18,8 +18,8 @@ void OnlineGame::Level::init()
 		else
 			map(x.coord().row, x.coord().col) = Subject::space;
 
-	map(map.row_count()/2, map.col_count()/3) = Subject::user1;
-	map(map.row_count()/2, map.col_count()*2/3) = Subject::money;
+	map(map.row_count()/2, map.col_count()/2) = Subject::user1;
+	map(map.row_count()/2, map.col_count()/2 + 1) = Subject::money;
 }
 
 void OnlineGame::Level::set_subject(const Coord &coord, Subject subject)
