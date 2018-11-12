@@ -50,7 +50,10 @@ OnlineGame::Level::iterator OnlineGame::Level::find_random(Subject s)
 
 	using index_type = std::vector<iterator>::size_type;
 
-	std::uniform_int_distribution<index_type> dist{0, v.size()};
+	if (v.empty())
+		return end();
+
+	std::uniform_int_distribution<index_type> dist{0, v.size() - 1};
 	std::random_device dev;
 
 	auto it_v = v[dist(dev)];
