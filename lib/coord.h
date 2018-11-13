@@ -10,9 +10,11 @@ namespace OnlineGame
 		int row{};
 		int col{};
 	};
-}
 
 	bool operator==(const OnlineGame::Coord &a, const OnlineGame::Coord &b);
 	bool operator!=(const OnlineGame::Coord &a, const OnlineGame::Coord &b);
+}
+
+	
 
 #endif /* ONLINEGAME_COORD_H */

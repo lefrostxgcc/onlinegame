@@ -19,12 +19,14 @@ bool OnlineGame::Coord::on_side(Coord a) const
 	return row == 0 || row == a.row-1 || col == 0 || col == a.col - 1;
 }
 
-bool operator==(const OnlineGame::Coord &a, const OnlineGame::Coord &b)
+bool
+OnlineGame::operator==(const OnlineGame::Coord &a, const OnlineGame::Coord &b)
 {
 	return a.row == b.row && a.col == b.col;
 }
 
-bool operator!=(const OnlineGame::Coord &a, const OnlineGame::Coord &b)
+bool
+OnlineGame::operator!=(const OnlineGame::Coord &a, const OnlineGame::Coord &b)
 {
 	return !(a == b);
 }
