@@ -20,8 +20,6 @@ void OnlineGame::Game::start(const Level &l)
 		user1_coord = p->coord();
 	else
 		throw std::logic_error{"User1 is not on the map"};
-
-	move(0, 0);
 }
 
 void OnlineGame::Game::move(int srow, int scol)

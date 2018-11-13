@@ -12,7 +12,7 @@ namespace OnlineGame
 	};
 }
 
-	bool operator==(OnlineGame::Coord a, OnlineGame::Coord b);
-	bool operator!=(OnlineGame::Coord a, OnlineGame::Coord b);
+	bool operator==(const OnlineGame::Coord &a, const OnlineGame::Coord &b);
+	bool operator!=(const OnlineGame::Coord &a, const OnlineGame::Coord &b);
 
 #endif /* ONLINEGAME_COORD_H */
