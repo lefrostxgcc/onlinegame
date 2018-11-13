@@ -5,8 +5,6 @@
 #include "matrix.hpp"
 namespace OnlineGame
 {
-	class LevelTest;
-
 	class Level {
 	public:
 		using iterator = typename Matrix<Subject>::iterator;
@@ -17,12 +15,13 @@ namespace OnlineGame
 		iterator end();
 		iterator find_first(Subject s);
 		iterator find_random(Subject s);
-		void set_subject(const Coord &coord, Subject subject);
 		Subject get_subject(const Coord &coord) const;
 		Coord get_size() const noexcept;
 		void eat_money(Coord money_coord);
 		int get_money_count() const noexcept;
 	private:
+		friend class Game;
+		void set_subject(const Coord &coord, Subject subject);
 		Matrix<Subject> map{};
 		Coord size{};
 		int money_count{};
